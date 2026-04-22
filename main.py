@@ -29,7 +29,7 @@ def signup():
         db.session.add(user)
         db.session.commit()
         return render_template("Login.html")    
-    return render_template("Signup.html")
+    return render_template("signup.html")
 
 @app.route("/login",methods=["POST","GET"])
 def login():
