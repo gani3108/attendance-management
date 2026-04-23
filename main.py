@@ -31,7 +31,7 @@ def signup():
         db_user=User(name=name,email=email,password=password)
         db.session.add(db_user)
         db.session.commit()
-        return render_template("Login.html")    
+        return render_template("login.html")    
     return render_template("signup.html")
 
 @app.route("/login",methods=["POST","GET"])
@@ -42,16 +42,16 @@ def login():
         user=User.query.filter_by(email=email,password=password).first()
         if user:
             session[user.id]=user
-            return render_template("Home.html",user=user)
+            return render_template("home.html",user=user)
         else:
-            return render_template("Login.html")
-    return render_template("Login.html")
+            return render_template("login.html")
+    return render_template("login.html")
 
 
 @app.route("/logout/<int:user_id>")
 def logout(user_id):
     session.pop(user_id,None)
-    return render_template("Home.html",user=None)
+    return render_template("home.html",user=None)
 
 if __name__ == "__main__":
     app.run(debug=True)
